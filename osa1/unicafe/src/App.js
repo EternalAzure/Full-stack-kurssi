@@ -44,17 +44,20 @@ const Button = ({ handleClick, text }) => (
 
 const Statistics = ({good, neutral, bad}) => {
   return(
-    <div>
+    <table>
       <StatisticLine text="good" value={good} />
       <StatisticLine text="neutral" value={neutral} />
       <StatisticLine text="bad" value={bad} />
       <StatisticLine text="all" value={good+neutral+bad} />
       <StatisticLine text="average" value={parseFloat((good-bad)/(good+neutral+bad)).toFixed(4)} />
       <StatisticLine text="positive" value={parseFloat(good/(good+neutral+bad)*100).toFixed(2)+"%"} />
-    </div>
+    </table>
   )
 }
 
-const StatisticLine = ({text, value}) => <p>{text} {value}</p>
+const StatisticLine = ({text, value}) => 
+<tr>
+  <td>{text}</td><td>{value}</td>
+</tr>
 
 export default App;
