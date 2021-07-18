@@ -44,6 +44,7 @@ const App = () => {
       <div>
         <h1>Anecdote with most votes</h1>
         <MostVoted vote={vote}  anecdote={anecdotes} length={vote.length} />
+        <MostVotes vote={vote} length={vote.length}/>
       </div>
     </div>
   )
@@ -60,6 +61,21 @@ const MostVoted = ({vote, anecdote, length}) => {
   return(
     <div>
       {anecdote[index]}
+    </div>
+  )
+}
+
+const MostVotes = ({vote, length}) => {
+  let index = 3
+  let i
+  for (i = 0; i < length; i++){
+    if (vote[i] > vote[index]){
+      index = i
+    }
+  }
+  return(
+    <div>
+      has {vote[index]} votes
     </div>
   )
 }
