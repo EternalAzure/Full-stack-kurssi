@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import Filter from './components/Filter'
+import PersonForm from './components/PersonForm'
+import Persons from './components/Persons'
 
 const App = () => {
   const [ persons, setPersons] = useState([
@@ -52,35 +55,16 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      filter with: <input value={newFilter} onChange={onChangeFilter} />
+      <Filter filter={newFilter} handler={onChangeFilter} />
 
       <h2>Add a new contact</h2>
-      <form onSubmit={addContact}>
-      <div>
-        name: <input value={newName}
-        onChange={onChangeName}/>
-      </div>
-      <div>
-        number: <input value={newNumber}
-        onChange={onChangeNumber} />
-      </div>
-      <div>
-        <button type="submit">add</button>
-      </div>
-    </form>
+      <PersonForm addContact={addContact} newName={newName} newNumber={newNumber} onChangeName={onChangeName} onChangeNumber={onChangeNumber} />
 
       <h2>Numbers</h2>
-      {contactsToShow.map(p => {
-        return <p key={p.name}> {p.name} {p.number} </p>
-      })}
+      <Persons contactsToShow={contactsToShow} />
     </div>
   )
 }
-/*
-  {contactsToShow.map(p => {
-    return <p key={p.name}>{p.name} {p.number}</p>
-  })}
-*/
 
 const CheckIfIncluded = (what, where) => {
   return where.reduce((bool, item) => 
