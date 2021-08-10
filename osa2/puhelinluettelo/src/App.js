@@ -67,12 +67,17 @@ const App = () => {
       })
       .catch(error => {
         setErrorMessage(
-          `${error}`, true
+          `${newName} is already in the phonebook`, true
         )
         setIsError(true)
         setTimeout(() => {
           setErrorMessage(null)
         }, 5000)
+        contactService
+        .getAll()
+        .then(updatedContacts => {
+          setContacts(updatedContacts)
+        })
       })
     }
     setNewName('')
@@ -84,7 +89,8 @@ const App = () => {
     const changedContact = { ...contact, number: newNumber }
   
     contactService
-      .update(id, changedContact).then(returnedContact => {
+      .update(id, changedContact)
+      .then(returnedContact => {
         setContacts(contacts.map(contact => contact.id !== id ? contact : returnedContact))
         setErrorMessage(
           `Contact '${contact.name}' was updated successfully`
@@ -96,7 +102,7 @@ const App = () => {
       })
       .catch(error => {
         setErrorMessage(
-          `Contact '${contact.name}' is not on the server`
+          `${error} Contact '${contact.name}' is not on the server`
         )
         setIsError(true)
         setTimeout(() => {
