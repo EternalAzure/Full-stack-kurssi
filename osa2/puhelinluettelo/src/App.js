@@ -66,9 +66,8 @@ const App = () => {
         }, 5000)
       })
       .catch(error => {
-        setErrorMessage(
-          `${newName} is already in the phonebook`, true
-        )
+        console.log(error.response.data.error)
+        setErrorMessage(`${JSON.stringify(error.response.data.error)}`)
         setIsError(true)
         setTimeout(() => {
           setErrorMessage(null)
