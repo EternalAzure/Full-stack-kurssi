@@ -5,6 +5,8 @@ blogsRouter.get('/', (response) => {
   Blog
     .find({})
     .then(blogs => {
+      console.log('blogs', blogs)
+      console.log('blogs JSON', JSON.stringify(blogs))
       response.json(blogs)
     })
 })
