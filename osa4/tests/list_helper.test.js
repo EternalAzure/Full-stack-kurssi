@@ -1,6 +1,5 @@
 const listHelper = require('../utils/list_helper')
 
-
 describe('dummy', () => {
   test('dummy returns one', () => {
     const result = listHelper.dummy(blogs)
