@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const Blog = require('../models/blog')
+const { isValidObjectId } = require('mongoose')
 
 const initialBlogs = [
   {
@@ -73,6 +74,6 @@ const usersInDb = async () => {
 module.exports = {
   initialBlogs,
   nonExistingId,
-  notesInDb: blogsInDb,
+  blogsInDb,
   usersInDb,
 }
