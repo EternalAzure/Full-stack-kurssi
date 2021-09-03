@@ -5,5 +5,8 @@ const login = async credentials => {
   const response = await axios.post(baseUrl, credentials)
   return response.data
 }
+const loginServices = {
+  login
+}
 
-export default { login }
+export default loginServices

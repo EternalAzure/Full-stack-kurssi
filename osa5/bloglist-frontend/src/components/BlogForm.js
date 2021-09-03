@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import blogService from '../services/blogs'
 
-const BlogForm = ({setIsError, setUserMessage}) => {
+const BlogForm = ({setIsError, setUserMessage, refresh}) => {
     const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('')
     const [url, setUrl] = useState('')
@@ -15,52 +15,61 @@ const BlogForm = ({setIsError, setUserMessage}) => {
         }
         blogService.create(newBlog)
         .then(response => {
-            console.log('response', response)
             setIsError(false)
             setUserMessage(`'${response.title}' by ${response.author} added`)
+            refresh()
         })
         .catch(error => {
             setIsError(true)
             if (error.response.status === 400) {
-                setUserMessage(`400 Bad request. Title and url required`)
+                setUserMessage(`400 (Bad request) Title and url required`)
+            } else if (error.response.status === 401) {
+                setUserMessage(`401 (Unathorized) Login again`)
             } else {
                 setUserMessage(`error:${error.response.status}`)
             }
         })
-        
+        setTimeout(() => {
+            setUserMessage(null)
+        }, 5000)
     }
 
     return (
-        <form onSubmit={addBlog}>
         <div>
-          Title
-            <input
-            type="text"
-            value={title}
-            name="Title"
-            onChange={({ target }) => setTitle(target.value)}
-          />
+
+            <div>
+                <form onSubmit={addBlog}>
+                    <div>
+                        Title
+                        <input
+                            type="text"
+                            value={title}
+                            name="Title"
+                            onChange={({ target }) => setTitle(target.value)}
+                        />
+                    </div>
+                    <div>
+                        Author
+                        <input
+                            type="text"
+                            value={author}
+                            name="Author"
+                            onChange={({ target }) => setAuthor(target.value)}
+                        />
+                    </div>
+                    <div>
+                         URL
+                         <input
+                            type="text"
+                            value={url}
+                            name="url"
+                            onChange={({ target }) => setUrl(target.value)}
+                        />
+                    </div>
+                    <button type="submit">submit</button>
+                </form>
+            </div>
         </div>
-        <div>
-          Author
-            <input
-            type="text"
-            value={author}
-            name="Author"
-            onChange={({ target }) => setAuthor(target.value)}
-          />
-        </div>
-        <div>
-          URL
-            <input
-            type="text"
-            value={url}
-            name="Author"
-            onChange={({ target }) => setUrl(target.value)}
-          />
-        </div>
-        <button type="submit">submit</button>
-      </form>
     )
 }
 

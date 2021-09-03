@@ -1,30 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react'
+import loginService from '../services/login'
+import blogService from '../services/blogs'
 
-const LoginForm = (props) => {
-    const action = () => {
+const LoginForm = ({setUser, setUserMessage, setIsError, loggedInUser}) => {
+    const [username, setUsername] = useState('') 
+    const [password, setPassword] = useState('')
+
+    const handleLogout = () => {
         window.localStorage.removeItem('loggedBlogappUser')
-        props.setUser(null)
+        setUser(null)
     }
+    const handleLogin = async (event) => {
+        event.preventDefault()
+        try {
+          const user = await loginService.login({
+            username, password,
+          })
+          window.localStorage.setItem(
+            'loggedBlogappUser', JSON.stringify(user)
+          )
+          blogService.setToken(user.token)
+          setUser(user)
+          setUsername('')
+          setPassword('')
+        } catch (exception) {
+          setUserMessage('Wrong username or password')
+          setIsError(true)
+          setTimeout(() => {
+            setUserMessage(null)
+          }, 5000)
+        }
+      }
 
-  if (!props.user) {
+  if (!loggedInUser) {
     return (
-      <form onSubmit={props.handleLogin}>
+      <form onSubmit={handleLogin}>
         <div>
           username
           <input
             type="text"
-            value={props.username}
+            value={username}
             name="Username"
-            onChange={({ target }) => props.setUsername(target.value)}
+            onChange={({ target }) => setUsername(target.value)}
           />
         </div>
         <div>
           password
             <input
             type="password"
-            value={props.password}
+            value={password}
             name="Password"
-            onChange={({ target }) => props.setPassword(target.value)}
+            onChange={({ target }) => setPassword(target.value)}
           />
         </div>
         <button type="submit">login</button>
@@ -34,7 +60,7 @@ const LoginForm = (props) => {
   
   return (
     <div>
-      <p>{props.user.name} logged in <button onClick={action} > logout </button> </p>
+      <p>{loggedInUser.name} logged in <button onClick={handleLogout} > logout </button> </p>
     </div>
   )
 }
