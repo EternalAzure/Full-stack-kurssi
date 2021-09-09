@@ -7,7 +7,7 @@ import authorization from '../utils/authorization'
 Lets users to login. Hiden from logged in users
 */
 /* eslint-disable-next-line */
-const LoginForm = React.forwardRef(({setUserMessage, setIsError}, ref) => {
+const LoginForm = React.forwardRef(({messageHandler}, ref) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -24,11 +24,7 @@ const LoginForm = React.forwardRef(({setUserMessage, setIsError}, ref) => {
       setUsername('')
       setPassword('')
     } catch (exception) {
-      setUserMessage('Wrong username or password')
-      setIsError(true)
-      setTimeout(() => {
-        setUserMessage(null)
-      }, 5000)
+      messageHandler('Wrong username or password', true)
     }
   }
 
@@ -66,8 +62,7 @@ const LoginForm = React.forwardRef(({setUserMessage, setIsError}, ref) => {
 })
 
 LoginForm.propTypes = {
-  setUserMessage: PropTypes.func.isRequired,
-  setIsError: PropTypes.func.isRequired
+  messageHandler: PropTypes.func.isRequired
 }
 
 LoginForm.displayName = 'LoginForm'

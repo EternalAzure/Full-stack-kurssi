@@ -5,7 +5,11 @@ import PropTypes from 'prop-types'
 
 const Toggle = React.forwardRef((props, ref) => {
   const [visible, setVisible] = useState(false)
-  const hideWhenVisible = {display: visible ? 'none' : '', marginBottom: 5}
+
+  const hideWhenVisible = {
+    display: visible ? 'none' : '',
+    marginBottom: 5
+  }
   const showWhenVisible = {
     display: visible ? '' : 'none',
     marginBottom: 5
@@ -23,12 +27,13 @@ const Toggle = React.forwardRef((props, ref) => {
 
   return (
     <div>
-      <div style={hideWhenVisible}>
+      <div style={hideWhenVisible} className="preview" >
         <div className='blog'>
-          {<b>{props.blog.title}</b>} <button onClick={toggleVisibility}>{props.buttonLabel}</button>
+          {<b>{props.blog.title}, {props.blog.author}</b>} <button onClick={toggleVisibility}>{props.buttonLabel}</button>
         </div>
       </div>
-      <div style={showWhenVisible}>
+      
+      <div style={showWhenVisible} className="fullview" >
         {props.children}
       </div>
     </div>

@@ -6,6 +6,7 @@ import BlogForm from './components/BlogForm'
 import Togglable from './components/Togglable'
 import Blog from './components/blog/Blog'
 import auth from './utils/authorization'
+import buttonHandlers from './handlers/buttons'
 
 const App = () => {
   const [isError, setIsError] = useState(true)
@@ -32,20 +33,26 @@ const App = () => {
     refresh()
   })
 
+  const messageHandler = (message, bool) => {
+    setUserMessage(message)
+    setIsError(bool)
+    setTimeout(() => {
+      setUserMessage(null)
+    }, 5000)
+    refresh()
+  }
+
   return (
     <div>
       <Notifications message={userMessage} isError={isError} />
-      <LoginForm
-        setUserMessage={setUserMessage}
-        setIsError={setIsError}
-      />
+      <LoginForm messageHandler={messageHandler} />
 
       {auth.isUser() &&
       <Togglable buttonLabel='create new blog'>
-        <BlogForm
-          setIsError={setIsError}
-          setUserMessage={setUserMessage}
-          refresh={refresh}/>
+        <BlogForm 
+          messageHandler={messageHandler} 
+          createHandler={buttonHandlers.createButton} 
+        />
       </Togglable>}
 
       <h2>Blogs</h2>
@@ -54,9 +61,9 @@ const App = () => {
           <Blog
             key={blog.id}
             blog={blog}
-            setIsError={setIsError}
-            setUserMessage={setUserMessage}
-            refresh={refresh}
+            likeHandler={buttonHandlers.likeButton}
+            removeHandler={buttonHandlers.removeButton}
+            messageHandler={messageHandler}
           />
         )}
       </div>
