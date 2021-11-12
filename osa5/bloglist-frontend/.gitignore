@@ -3,12 +3,19 @@
 # dependencies
 /node_modules
 /public
+/cypress/videos/
+/cypress/plugins/
+/cypress/support/
+/cypress/fixtures/
 /.pnp
 .pnp.js
 .vscode
 
 # testing
 /coverage
+*.sh
+/cypress
+cypress.json
 
 # production
 /build

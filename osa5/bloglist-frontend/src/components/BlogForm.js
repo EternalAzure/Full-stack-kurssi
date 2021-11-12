@@ -20,7 +20,7 @@ const BlogForm = ({messageHandler, createHandler}) => {
         <form onSubmit={addBlog}>
           <div>
             Title
-            <input className='titleInput'
+            <input id='titleInput'
               type="text"
               value={title}
               name="Title"
@@ -29,7 +29,7 @@ const BlogForm = ({messageHandler, createHandler}) => {
           </div>
           <div>
             Author
-            <input className='authorInput'
+            <input id='authorInput'
               type="text"
               value={author}
               name="Author"
@@ -38,14 +38,14 @@ const BlogForm = ({messageHandler, createHandler}) => {
           </div>
           <div>
             URL
-            <input className='urlInput'
+            <input id='urlInput'
               type="text"
               value={url}
               name="url"
               onChange={({target}) => setUrl(target.value)}
             />
           </div>
-          <button type="submit">submit</button>
+          <button id='submit-blog' type="submit">submit</button>
         </form>
       </div>
     </div>

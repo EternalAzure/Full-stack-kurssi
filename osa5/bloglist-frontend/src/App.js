@@ -56,7 +56,7 @@ const App = () => {
       </Togglable>}
 
       <h2>Blogs</h2>
-      <div>
+      <main>
         {blogs.map(blog =>
           <Blog
             key={blog.id}
@@ -66,7 +66,7 @@ const App = () => {
             messageHandler={messageHandler}
           />
         )}
-      </div>
+      </main>
     </div>
   )
 }

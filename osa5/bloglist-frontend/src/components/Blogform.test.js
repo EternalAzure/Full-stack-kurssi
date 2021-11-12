@@ -41,12 +41,12 @@ describe('BlogForm component', () => {
 
   describe('callback function is given right specs', () => {
 
-    test('foo bar', () => {
+    test('callback function', () => {
       expect(component).toBeDefined()
       const form = component.container.querySelector('form')
-      const title = component.container.querySelector('.titleInput')
-      const author = component.container.querySelector('.authorInput')
-      const url = component.container.querySelector('.urlInput')
+      const title = component.container.querySelector('#titleInput')
+      const author = component.container.querySelector('#authorInput')
+      const url = component.container.querySelector('#urlInput')
 
       fireEvent.change(title, {
         target: {value: 'title text'}

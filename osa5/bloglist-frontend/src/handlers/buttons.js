@@ -15,7 +15,7 @@ const likeButton = (blog, messageHandler) => {
       messageHandler(`Liked ${blog.title} by ${blog.author}`, false)
     })
     .catch((error) => {
-      messageHandler(`error: ${error.status}`, true)
+      messageHandler(`error: ${error.response.status}`, true)
     })
 }
 

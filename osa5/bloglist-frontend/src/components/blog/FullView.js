@@ -12,7 +12,7 @@ const FullView = ({blog, handler, removeHandler, likeHandler, messageHandler}) =
   const handler2 = () => {
     removeHandler(blog, messageHandler)
   }
- 
+
   return (
     <div className='blog'>
       {<b>{blog.title}</b>} <button onClick={handler}>hide</button> <br></br>
