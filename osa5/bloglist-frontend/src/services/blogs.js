@@ -13,7 +13,7 @@ const create = async newObject => {
 }
 
 const update = (id, newObject) => {
-  const request = axios.put(`${baseUrl}/${id}`, newObject)
+  const request = axios.put(`${baseUrl}/${id}`, newObject, authorization.authHeader())
   return request.then(response => response.data)
 }
 

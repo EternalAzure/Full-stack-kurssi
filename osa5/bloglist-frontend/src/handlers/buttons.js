@@ -1,21 +1,18 @@
 import blogServices from '../services/blogs'
 
 const likeButton = (blog, messageHandler) => {
-  const newBlog = {
-    title: blog.title,
-    author: blog.author,
-    url: blog.url,
-    likes: blog.likes +1,
-    user: blog.user
+  const fieldToUpdate = {
+    likes: blog.likes +1
   }
 
   blogServices
-    .update(blog.id, newBlog)
+    .update(blog.id, fieldToUpdate)
     .then(() => {
       messageHandler(`Liked ${blog.title} by ${blog.author}`, false)
     })
     .catch((error) => {
       messageHandler(`error: ${error.response.status}`, true)
+      console.log('error', error.message)
     })
 }
 
