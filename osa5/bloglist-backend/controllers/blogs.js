@@ -30,9 +30,10 @@ router.delete('/:id', async (request, response) => {
 })
 
 router.put('/:id', async (request, response) => {
-  const blog = request.body
+  const filter = { _id: request.params.id }
+  const update = request.body
 
-  const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blog, { new: true })
+  const updatedBlog = await Blog.findOneAndUpdate(filter, update, { new: true })
   response.json(updatedBlog.toJSON())
 })
 
