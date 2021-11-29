@@ -1,25 +1,25 @@
 # HY Kurssi jäsästä </br>
 
-### Osa 0
+__Osa 0__ <br>
 Web-sovellusten toiminnan perusteet
 
-### Osa 1
+__Osa 1__ <br>
 Reactin perusteet
 
-### Osa 2
+__Osa 2__ <br>
 Palvelimen kanssa tapahtuva kommunikointi
 
-### Osa 3
+__Osa 3__ <br>
 Palvelimen ohjelmointi NodeJS:n Express-kirjastolla
 
-### Osa 4
+__Osa 4__ <br>
 Express-sovellusten testaaminen, käyttäjänhallinta
 
-### Osa 5
+__Osa 5__ <br>
 React-sovelluksen testaaminen
 
-### Osa 6
+__Osa 6__ <br>
 Sovelluksen tilan hallinta Redux-kirjastolla
 
-### Osa 7
+__Osa 7__ <br>
 React router, custom-hookit, tyylikirjastot ja webpack
