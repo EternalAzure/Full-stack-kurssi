@@ -1,11 +1,19 @@
-export const showNotification = (notification) => {
-    return {
+import { toggle } from '../reducers/showReducer'
+
+export const showNotification = (notification, time) => {
+  return dispatch => {
+    dispatch({
       type: 'NOTIFICATION',
       data: notification
-    }
+    })
+    dispatch(toggle(true))
+    setTimeout(function () {
+      dispatch(toggle(false))
+    }, time * 1000)
+  }
 }
   
-  const initialState = 'anecdotesAtStart.map(asObject)'
+  const initialState = ''
   
   const reducer = (state = initialState, action) => {
     let newNotification

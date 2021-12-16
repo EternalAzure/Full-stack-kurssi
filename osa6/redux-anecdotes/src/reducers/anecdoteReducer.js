@@ -7,7 +7,7 @@ export const initializeAnecdotes = () => {
       type: 'INIT_ANECDOTES',
       data: anecdotes,
     })
-}
+  }
 }
 
 export const createAnecdote = (content) => {
