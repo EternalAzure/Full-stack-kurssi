@@ -13,11 +13,9 @@ const createNew = async (content) => {
   return response.data
 }
 
-// Add id number to baseUrl
 const vote = async (anecdote, id) => {
   anecdote.votes += 1
   const response = await axios.put(`${baseUrl}/${id}`, anecdote)
-  console.log('vote response.data', response.data)
   return response.data
 }
 

@@ -1,15 +1,20 @@
-import { toggle } from '../reducers/showReducer'
+import { on, off } from './showReducer'
+import { timer } from './timerReducer'
 
-export const showNotification = (notification, time) => {
+export const showNotification = (timerId, notification, time) => {
   return dispatch => {
+    dispatch(on(timerId))
+
+    const id = setTimeout(function () {
+      dispatch(off())
+    }, time * 1000)
+
+    dispatch(timer(id))
+
     dispatch({
       type: 'NOTIFICATION',
       data: notification
     })
-    dispatch(toggle(true))
-    setTimeout(function () {
-      dispatch(toggle(false))
-    }, time * 1000)
   }
 }
   

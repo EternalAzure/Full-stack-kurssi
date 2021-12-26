@@ -31,8 +31,8 @@ export const voteAnecdote = (anecdote, id) => {
 }
 
 const reducer = (state = [], action) => {
-  console.log('state now: ', state)
-  console.log('action', action)
+  //console.log('state now: ', state)
+  //console.log('action', action)
   switch (action.type) {
     case 'NEW':
       return [...state, action.data]
